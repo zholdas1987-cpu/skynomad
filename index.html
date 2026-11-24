@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SKY NOMAD — Unlock</title>
+<style>
+  :root { --bg:#0b0d10; --card:#14171b; --line:#2a2d32; --txt:#ece8dc; --mut:#9a968b; --acc:#d07a32; --lume:#8ef5a8; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--txt); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height:1.5; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 32px 20px 64px; }
+  .lang { text-align:right; font-size:14px; }
+  .lang button { background:none; border:1px solid var(--line); color:var(--mut); padding:4px 10px; border-radius:6px; cursor:pointer; }
+  .lang button.on { color:var(--txt); border-color:var(--acc); }
+  h1 { font-size: 34px; letter-spacing:.22em; margin: 28px 0 4px; }
+  .sub { color:var(--mut); margin:0 0 28px; }
+  .price { font-size: 44px; font-weight: 700; color: var(--acc); margin: 8px 0 0; }
+  .price small { font-size: 16px; color: var(--mut); font-weight: 400; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px; margin: 22px 0; }
+  ol { padding-left: 20px; } li { margin: 6px 0; }
+  label { display:block; font-size:14px; color:var(--mut); margin-bottom:6px; }
+  input { width:100%; font: 600 26px ui-monospace, monospace; letter-spacing:.12em; text-transform:uppercase;
+          padding:12px 14px; border-radius:10px; border:1px solid #3a3d42; background:#0b0d10; color:#fff; }
+  .hint { font-size:13px; color:var(--mut); margin-top:8px; }
+  .err { color:#e0605a; font-size:14px; min-height:20px; margin-top:6px; }
+  .pay { margin-top: 16px; }
+  .alt { display:block; text-align:center; padding:14px; border-radius:10px; background:#1f2328; color:var(--txt);
+         text-decoration:none; font-weight:600; margin-top:12px; border:1px solid var(--line); }
+  .ok { display:none; border-color: var(--lume); }
+  .ok h2 { color: var(--lume); margin-top:0; }
+  ul.feat { padding-left: 18px; color: var(--txt); } ul.feat li { margin: 4px 0; }
+  .foot { color: var(--mut); font-size: 13px; margin-top: 36px; }
+  [data-l] { display:none; } body.en [data-l="en"], body.ru [data-l="ru"] { display:revert; }
+</style>
+</head>
+<body class="en">
+<div class="wrap">
+  <div class="lang"><button id="b-en" class="on">EN</button> <button id="b-ru">RU</button></div>
+
+  <h1>SKY NOMAD</h1>
+  <p class="sub" data-l="en">The cockpit on your wrist — for MARQ, fenix, epix, quatix and D2.</p>
+  <p class="sub" data-l="ru">Кабина на запястье — для MARQ, fenix, epix, quatix и D2.</p>
+
+  <div class="price">$5.99 <small data-l="en">one-time · lifetime unlock for your watch</small><small data-l="ru">один раз · навсегда для ваших часов</small></div>
+
+  <div class="card">
+    <div data-l="en">
+      <ul class="feat">
+        <li>Drum counters, nearest-airfield split-flap board, altimeter with Kollsman window, Zulu time</li>
+        <li>Wind, QNH, heart rate, Body Battery, steps, sleep, stress — three presets in one tap</li>
+        <li>Works offline: 9,900 airfields stored on the watch</li>
+        <li>No subscription. Pay once, keep every update.</li>
+      </ul>
+    </div>
+    <div data-l="ru">
+      <ul class="feat">
+        <li>Барабанные счётчики, табло ближайшего аэродрома, альтиметр с окном Коллсмана, время Zulu</li>
+        <li>Ветер, QNH, пульс, Body Battery, шаги, сон, стресс — три режима одним нажатием</li>
+        <li>Работает без интернета: 9 900 аэродромов в памяти часов</li>
+        <li>Без подписки. Платите один раз, все обновления бесплатно.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" id="buy">
+    <ol data-l="en">
+      <li>Install SKY NOMAD from the Connect IQ Store. The 7-day trial is fully featured.</li>
+      <li>Find your <b>watch code</b>: Connect IQ app → SKY NOMAD → Settings → «Watch code», or on the watch: hold MENU → Watch face → SKY NOMAD → License. After the trial it is also shown at the bottom of the dial (UNLOCK A7K2-9F4D).</li>
+      <li>Enter the code below and pay. Your activation key arrives by e-mail.</li>
+    </ol>
+    <ol data-l="ru">
+      <li>Установите SKY NOMAD из Connect IQ Store. 7 дней пробного периода — без ограничений.</li>
+      <li>Найдите <b>код часов</b>: приложение Connect IQ → SKY NOMAD → Настройки → «Код часов», или на часах: удерживайте MENU → Циферблат → SKY NOMAD → Лицензия. После пробного периода код виден и внизу циферблата (UNLOCK A7K2-9F4D).</li>
+      <li>Введите код ниже и оплатите. Ключ активации придёт на почту.</li>
+    </ol>
+
+    <label for="code"><span data-l="en">Watch code</span><span data-l="ru">Код часов</span></label>
+    <input id="code" placeholder="A7K2-9F4D" maxlength="12" autocomplete="off">
+    <div class="err" id="err"></div>
+
+    <div class="pay" id="paypal-buttons"></div>
+    <div class="hint" data-l="en">Payments are processed by PayPal — you can pay with a card, no PayPal account needed in most countries.</div>
+    <div class="hint" data-l="ru">Через PayPal можно оплатить картой без аккаунта PayPal (в большинстве стран).</div>
+  </div>
+
+  <div class="card ok" id="ok">
+    <h2 data-l="en">Thank you, payment received!</h2>
+    <h2 data-l="ru">Спасибо, оплата прошла!</h2>
+    <p data-l="en">Your activation key for <b id="okc1"></b> will arrive by e-mail, usually within a few hours. Enter it in Connect IQ app → SKY NOMAD → Settings → «Activation key».</p>
+    <p data-l="ru">Ключ активации для <b id="okc2"></b> придёт на почту, обычно в течение нескольких часов. Введите его: Connect IQ → SKY NOMAD → Настройки → «Ключ активации».</p>
+  </div>
+
+  <p class="foot" data-l="en">Questions or no key after 24 hours? Write to <a href="mailto:info@ifit.kz">info@ifit.kz</a> and include your watch code. SKY NOMAD is a watch face, not a flight instrument.</p>
+  <p class="foot" data-l="ru">Вопросы или ключ не пришёл за сутки? Напишите на <a href="mailto:info@ifit.kz">info@ifit.kz</a> и укажите код часов. SKY NOMAD — циферблат, а не авиационный прибор.</p>
+</div>
+
+<script>
+const PAYPAL_CLIENT_ID = "BAAFj278-AaZgNzTit9yS4yuxqt9oiquWMTe1GLuYt9fEDHiey3-Xg_xwDPHhafAvriaxRxKxxugXZoZUw";
+const PRICE_USD = "5.99";
+const ALPHA = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";
+
+function setLang(l) {
+  document.body.className = l;
+  document.getElementById("b-en").classList.toggle("on", l === "en");
+  document.getElementById("b-ru").classList.toggle("on", l === "ru");
+}
+document.getElementById("b-en").onclick = () => setLang("en");
+document.getElementById("b-ru").onclick = () => setLang("ru");
+if ((navigator.language || "").toLowerCase().startsWith("ru") || (navigator.language || "").toLowerCase().startsWith("kk")) setLang("ru");
+
+const norm = s => s.toUpperCase().split("").filter(c => ALPHA.includes(c)).join("");
+function code() {
+  const c = norm(document.getElementById("code").value);
+  return c.length === 8 ? c.slice(0, 4) + "-" + c.slice(4) : null;
+}
+function showErr(on) {
+  const ru = document.body.className === "ru";
+  document.getElementById("err").textContent = on
+    ? (ru ? "Введите код часов: 8 знаков, например A7K2-9F4D" : "Enter your watch code: 8 characters, e.g. A7K2-9F4D") : "";
+}
+document.getElementById("code").addEventListener("input", () => showErr(false));
+
+if (PAYPAL_CLIENT_ID !== "PAYPAL_CLIENT_ID") {
+  const s = document.createElement("script");
+  s.src = "https://www.paypal.com/sdk/js?client-id=" + encodeURIComponent(PAYPAL_CLIENT_ID) + "&currency=USD";
+  s.onload = () => paypal.Buttons({
+    style: { layout: "vertical", color: "gold", shape: "rect", label: "pay" },
+    onClick: (data, actions) => { if (!code()) { showErr(true); return actions.reject(); } return actions.resolve(); },
+    createOrder: (data, actions) => actions.order.create({
+      purchase_units: [{
+        description: "SKY NOMAD watch face — activation key",
+        custom_id: code(),
+        amount: { currency_code: "USD", value: PRICE_USD }
+      }]
+    }),
+    onApprove: (data, actions) => actions.order.capture().then(() => {
+      const c = code();
+      document.getElementById("okc1").textContent = c;
+      document.getElementById("okc2").textContent = c;
+      document.getElementById("buy").style.display = "none";
+      document.getElementById("ok").style.display = "block";
+    })
+  }).render("#paypal-buttons");
+  document.head.appendChild(s);
+}
+</script>
+</body>
+</html>
