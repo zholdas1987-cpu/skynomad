@@ -133,6 +133,12 @@ if (PAYPAL_CLIENT_ID !== "PAYPAL_CLIENT_ID") {
         amount: { currency_code: "USD", value: PRICE_USD }
       }]
     }),
+    onError: () => {
+      const ru = document.body.className === "ru";
+      document.getElementById("err").textContent = ru
+        ? "PayPal не смог провести оплату. Попробуйте ещё раз позже или напишите на info@ifit.kz — поможем."
+        : "PayPal could not process the payment. Please try again later or write to info@ifit.kz — we will help.";
+    },
     onApprove: (data, actions) => actions.order.capture().then(() => {
       const c = code();
       document.getElementById("okc1").textContent = c;
